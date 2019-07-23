@@ -4,6 +4,7 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.naming.NamingException;
+import mx.com.develop.objects.Equipo;
 import mx.com.develop.objects.Jugador;
 
 public class MbdJugador extends Mbd implements java.io.Serializable {
@@ -138,6 +139,41 @@ public class MbdJugador extends Mbd implements java.io.Serializable {
         } finally {
             returnConexion(conn, ps, rst, stmt);
         }
+    }
+     public ArrayList<Jugador> traerTodosLosJugador() throws SQLException,
+            NamingException {
+        getConexion();
+
+        stmt = conn.createStatement();
+
+        ArrayList<Jugador> jugador = new ArrayList<Jugador>();
+
+        try {
+
+            //rst = stmt.executeQuery("SELECT * FROM jugador ORDER BY nombre");
+            ps = conn.prepareStatement("SELECT * FROM jugador ORDER BY nombre");
+            rst = ps.executeQuery();
+            while (rst.next()) {
+                Equipo equipo = new Equipo();
+                Jugador jugado = new Jugador();
+                System.out.println("rst.getInt(1)=" + rst.getInt(1));
+                jugado.setIdJugador(rst.getInt(1));
+                jugado.setNombre(rst.getString(2));
+                jugado.setDireccion(rst.getString(3));
+                jugado.setFechaDeNacimiento(rst.getDate(4));
+                jugado.setFoto(rst.getString(5));
+                jugado.setIdEquipo(rst.getInt(6));
+                System.out.println("jugado.getidJugador=" + jugado.getIdJugador());
+                equipo.setNombre(rst.getString(2));
+                jugador.add(jugado);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en sql: ");
+            throw e;
+        } finally {
+            returnConexion(conn, ps, rst, stmt);
+        }
+        return jugador;
     }
 
 }
