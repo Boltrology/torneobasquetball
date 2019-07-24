@@ -173,8 +173,8 @@
                                 <phase>install</phase>
                                 <configuration>
                                     <target>
-                                        <copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}" 
-                                              todir="/opt/glassfish5/glassfish/domains/domain1/autodeploy/"/>
+                                        <copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
+                                              todir="C:\glassfish5\glassfish\domains\domain1\autodeploy"/>
                                     </target>
                                 </configuration>
                                 <goals>
