@@ -8,26 +8,26 @@
 <%@page import="mx.com.develop.tools.ImageTools"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.Hashtable"%>
-<%@page import="mx.com.develop.model.MbdEquipos"%>
+<%@page import="mx.com.develop.model.MbdEquipo"%>
 <%@page import="mx.com.develop.objects.Equipo"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="mx.com.develop.model.MbdPartidos"%>
+<%@page import="mx.com.develop.model.MbdPartido"%>
 <%@page import="mx.com.develop.objects.Partido"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    ArrayList<Equipo> listaEquipos = new MbdEquipos().obtenerEquiposConPuntos();
+    ArrayList<Equipo> listaEquipos = new MbdEquipo().obtenerEquiposConPuntos();
     listaEquipos.sort(Equipo.getComparatorPorPuntos());//Se requiere un comparator
 
-    ArrayList<Partido> listaPartidosSiguientes = new MbdPartidos().obtenerPartidosSiguientes();
-    Date fechaSiguiente = new MbdPartidos().obtenerFechaPartidoSiguiente();
+    ArrayList<Partido> listaPartidosSiguientes = new MbdPartido().obtenerPartidosSiguientes();
+    Date fechaSiguiente = new MbdPartido().obtenerFechaPartidoSiguiente();
     SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
     SimpleDateFormat formatoFechaHora = new SimpleDateFormat("HH:mm");
 
-    ArrayList<Partido> listaPartidosAnteriores = new MbdPartidos().obtenerPartidosAnteriores();
-    Date fechaAnterior = new MbdPartidos().obtenerFechaPartidoAnterior();
+    ArrayList<Partido> listaPartidosAnteriores = new MbdPartido().obtenerPartidosAnteriores();
+    Date fechaAnterior = new MbdPartido().obtenerFechaPartidoAnterior();
 
-    Hashtable<Integer, Equipo> equipos = new MbdEquipos().getEquipos();
+    Hashtable<Integer, Equipo> equipos = new MbdEquipo().getEquipos();
     String uploadFolder = ResourceBundle.getBundle("mx.com.develop.properties.rutas").getString("rutaArchivos");
 %>
 <!doctype html>
